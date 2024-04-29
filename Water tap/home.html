@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    
+    <div class="whole">
+        <div class="tank" >
+          <div class="water" id="waterEl"></div>
+        </div>
+         <div class="Pipecontainer">
+           <div class="pipehorizontal"></div>
+              <div class="pipevertical">
+               
+                  <button onclick="taps()" class="tapbutton" id="tapbtn"></button>
+                  <div class="vertical-flow" id="flow"></div>
+                  </div>
+               </div>
+         </div>
+        <script>
+          var waterEl=document.getElementById("waterEl")
+          var tapbtn = document.getElementById("tapbtn");
+  var flow=document.getElementById("flow")
+  var H = 500;
+  var Mt = 0;
+  var tapstatus = "Close";
+  var watflow="";
+  
+  
+  function taps() {
+    if (tapstatus == "Close") {
+      
+      tapbtn.style = "background:green;";
+      tapstatus="Open"
+    
+      waterEl.style.borderTopLeftRadius="0px"
+       waterEl.style.borderTopRightRadius="0px"
+       if(H>0){
+         flow.style.backgroundColor="aqua";
+            var intervalwater=setInterval(function() {
+                 H=H-1;
+                 Mt=Mt+1;
+                waterEl.style.height=H+"px"
+                waterEl.style.marginTop=Mt+"px"
+        if(H==0||watflow=="OFF"){
+          clearInterval(intervalwater);
+        flow.style.backgroundColor="white";
+         watflow="ON";
+        }
+  
+     },50)
+    
+     
+    }
+  }
+    else if(tapstatus=="Open"){
+      
+        tapbtn.style.backgroundColor="red";
+        tapstatus="Close"
+   flow.style.backgroundColor="white";
+   watflow="OFF";
+    }
+  
+    
+  }
+  
+   </script> 
+    
+</body>
+</html>
